@@ -21,25 +21,35 @@ Base de datos concesionario de vehículos para gestionar la información sobre l
 El diseño de la base de datos se estructuró para gestionar la información relacionada con vehículos, sus estados, tipos de combustible, marcas, servicios y ventas.
 
 **Tablas**:
-   - **estado_vehiculos**: tabla para clasificar los 
-   - **tipo_trasmisiones**: Para categorizar las características técnicas de los vehículos.
-   - **tipo_combustibles**: Para almacenar información sobre las marcas de los vehículos.
-   - **Marcas**: Tabla central que almacena información clave sobre cada vehículo, incluyendo referencias a su marca.
-   - **Vehículos**: Para manejar la información de las personas involucradas en el proceso de venta y servicio.
-   - **vehiculos_combustible**: Para registrar servicios realizados a los vehículos, con relación a su tipo.
-   - **Clientes**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **Vendedores**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **tipo_servicios**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **Servicios**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **metodo_pagos**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **servicios_clientes**: Para gestionar las transacciones y métodos de pago utilizados.
-   - **ventas**: Para gestionar las transacciones y métodos de pago utilizados.
+   - **estado_vehiculos**: tabla para categorizar los estados de un vehículo (nuevo, usado). 
+   - **tipo_trasmisiones**: tabla para categorizar el tipo de trasmisión que tiene un vehículo. 
+   - **tipo_combustibles**: tabla para categorizar el tipo de combustible que usa un vehículo. 
+   - **Marcas**: tabla que guarda las marcas de los vehículos. 
+   - **Vehículos**: tabla que guarda la información de cada vehículo. 
+   - **vehiculos_combustible**: tabla para manejar la relación de muchos a muchos entre vehículos y tipos de combustibles. 
+   - **Clientes**: tabla para guardar los datos de los clientes. 
+   - **Vendedores**: tabla para guardar los datos de los vendedores. 
+   - **tipo_servicios**: tabla para guardar los tipos de servicios (mantenimiento preventivo, correctivo, etc.) que ofrece el concesionario. 
+   - **Servicios**: tabla para gestionar los servicios realizados a los vehículos. 
+   - **metodo_pagos**: tabla para gestionar los metodos de pagos que existen. 
+   - **servicios_clientes**: tabla para guardar los servicios cuando se hacen a un vehículo que ya esta vendido (es decir, le pertenece a un cliente). 
+   - **ventas**: tabla para guardar las ventas realizadas. 
 
-2. **Relaciones**:
-   - Las relaciones entre las tablas se establecieron mediante claves foráneas. Por ejemplo, un vehículo está relacionado con su marca a través de la clave foránea `id_marca` en la tabla `Vehiculos`. Esto permite mantener la integridad referencial y facilita consultas relacionadas.
+**Relaciones**:
+   - Las relaciones entre las tablas se establecieron mediante claves foráneas. Por ejemplo, un vehículo está relacionado con su marca a través de la clave foránea `id_marca` en la tabla `Vehiculos`. 
 
-  
 ### Restricciones y validaciones
+
+- **Claves primarias**: cada tabla tiene una clave primaria que asegura la unicidad de cada registro. Por ejemplo:
+   - `id_estado` en `estado_vehiculos`
+   - `id_vehiculo` en `Vehiculos`
+
+- **Claves foráneas**: las claves foráneas garantizan que las relaciones entre tablas sean coherentes. Por ejemplo:
+   - `id_marca` en `Vehiculos` hace referencia a `Marcas(id_marca)`.
+   - `id_cliente` en `Ventas` hace referencia a `Clientes(id_cliente)`.
+
+- **Restricciones de unicidad**: se aplicaron a campos que deben ser únicos por ejemplo en el `correo` en `Clientes` y el `VIM` en `Vehiculos`, evitando duplicados en la base de datos.
+- **Restricciones de valores no nulos**: se aplicaron
   
 ### Relaciones UML
 ---
