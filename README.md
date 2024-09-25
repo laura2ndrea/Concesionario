@@ -14,7 +14,7 @@ Base de datos concesionario de vehículos para gestionar la información sobre l
   
 ### Diagrama UML E - R
 
-  <img src="Concesionario.png">
+  <img src="Concesionario.jpg">
 
 ### Justificación de diseño 
   
