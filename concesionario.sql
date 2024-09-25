@@ -26,7 +26,9 @@ CREATE TABLE Vehiculos (
     precio FLOAT NOT NULL,
     color VARCHAR(100) NOT NULL,
     disponibilidad VARCHAR(100) NOT NULL,
-    FOREIGN KEY (id_marca) REFERENCES Marcas(id_marca)
+    FOREIGN KEY (id_marca) REFERENCES Marcas(id_marca), 
+    FOREIGN KEY (id_estado) REFERENCES estado_vehiculos(id_estado), 
+    FOREIGN KEY (id_trasmision) REFERENCES tipo_trasmisiones(id_trasmision)
 );
 
 CREATE TABLE vehiculos_combustible (
@@ -82,3 +84,4 @@ CREATE TABLE Ventas (
     FOREIGN KEY (n_empleado) REFERENCES Vendedores(n_empleado),
     FOREIGN KEY (id_pago) REFERENCES metodo_pagos(id_pago)
 );
+
