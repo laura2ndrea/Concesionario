@@ -49,9 +49,29 @@ El diseño de la base de datos se estructuró para gestionar la información rel
    - `id_cliente` en `Ventas` hace referencia a `Clientes(id_cliente)`.
 
 - **Restricciones de unicidad**: se aplicaron a campos que deben ser únicos por ejemplo en el `correo` en `Clientes` y el `VIM` en `Vehiculos`, evitando duplicados en la base de datos.
-- **Restricciones de valores no nulos**: se aplicaron
+  
+- **Restricciones de valores no nulos**: se aplicaron a campos que deben no ser nulos, por ejemplo en el `VIM` en `Vehiculos`, evitando que se registre un vehiculo con ese campo en null. 
   
 ### Relaciones UML
+Explicación de algunas de las relaciones entre entidades: 
+
+- **Vehiculos**: la entidad vehiculo esta relacionada con estas otras entidades:
+  - **tipo_combustible**: ya que esta relación de es muchos a muchos (es decir un tipo de combustible puede pertenecer a mas de un vehículo y un vehículo puede tener mas de un tipo de combustible), se creo una tabla intermedia llamada     **vehiculos_combustible** para manejarla.
+  - **marca**: relacion de uno a muchos, es decir, un vehículo solo puede tener una marca, pero una misma marca le puede pertenecer a muchos vehículos.
+  - **estado_vehículos**: relacion de uno a muchos, es decir, un vehículo solo puede tener un estado, pero un mismo estado le puede pertenecer a muchos vehículos.
+  - **tipo_trasmisiones**: relacion de uno a muchos, es decir, un vehículo solo puede tener un tipo de trasmisión, pero una misma trasmisión le puede pertenecer a muchos vehículos.
+ 
+- **Servicios**: la entidad servicios esta relacionada con estas otras entidades:
+  - **tipo_servicios**: relacion de uno a muchos, es decir, un servicio solo puede tener un tipo de servicio, pero un tipó de servicio le puede pertenecer a muchos servicios.
+  - **Vehículos**: relacion de uno a muchos, es decir, un vehículo solo tener muchos servicios, pero un servicio solo puede tener un vehículo. 
+  - **servicios_clientes**: (cuando el vehículo al que se le va a hacer el servicio tiene un cliente) relacion de uno a uno. A su vez esta tabla esta relacionada con metodos_pagos, esta relación es de uno a muchos, en cada servicio_cliente, se paga con un metodo de pago, pero un mismo metodo de pago se puede utilizar en diferentes servicios a clientes.
+ 
+- **Clientes**: la entidad clientes esta relacionada con ventas y servicios_clientes, ambas relaciones son de uno a muchos, es decir un cliente puede haber comprado muchos vehiculos o solicitado muchos servicios, pero para cada servicio o venta debe ser a nombre de un solo cliente.
+
+- **Vendedores**: relacionado con la entidad ventas, relacion de uno a muchos, es decir, un vendedor puede hacer muchas ventas pero cada venta solo tiene un vendedor. 
+
+- **Ventas**: relacionada con metodos de pagos, relación de uno a muchos, es deicr, una venta solo tiene un metodo de pago, pero un metodo de pago puede estar relacionado con muchas ventas. 
+
 ---
 <a name="tecno"></a>
 ## Tecnologías :computer:
